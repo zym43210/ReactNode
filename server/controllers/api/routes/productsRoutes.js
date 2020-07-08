@@ -2,6 +2,8 @@
 const express = require("express");
 const ProductRoutes = express.Router();
 
+const verify = require('../../../middleware/verifyToken')
+
 const Products = require("../../../models/products");
 
 ProductRoutes.route("/add").post(function (req, res) {
@@ -14,7 +16,7 @@ ProductRoutes.route("/add").post(function (req, res) {
         });
 });
 
-ProductRoutes.route('').get(function (req, res) {
+ProductRoutes.get('/',verify,(req, res) =>{
     Products.find(function(err, products){
     if(err){
       console.log(err);
@@ -22,7 +24,7 @@ ProductRoutes.route('').get(function (req, res) {
     else {
       res.json(products)
     }
-  });
+  })
 });
 
 
