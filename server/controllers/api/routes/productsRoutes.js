@@ -6,7 +6,7 @@ const verify = require('../../../middleware/verifyToken')
 
 const Products = require("../../../models/products");
 
-ProductRoutes.route("/add").post(function (req, res) {
+ProductRoutes.post("/add",verify,(req,res)=> {
     let products = new Products(req.body);
     products.save().then(products => {
         res.status(200).json({ 'products': 'products added' });
@@ -28,7 +28,7 @@ ProductRoutes.get('/',verify,(req, res) =>{
 });
 
 
-ProductRoutes.route('/edit/:id').get(function (req, res) {
+ProductRoutes.get('/edit/:id',verify,(req, res)=> {
   let id = req.params.id;
   Products.findById(id, function (err, products){
       res.json(products);
@@ -36,7 +36,7 @@ ProductRoutes.route('/edit/:id').get(function (req, res) {
 });
 
 
-ProductRoutes.route('/update/:id').post(function (req, res) {
+ProductRoutes.post('/update/:id',verify,(req, res)=> {
     Products.findById(req.params.id, function(err, products) {
     if (!products)
       res.status(404).json("data is not found");
@@ -55,7 +55,7 @@ ProductRoutes.route('/update/:id').post(function (req, res) {
 });
 
 
-ProductRoutes.route('/delete/:id').get(function (req, res) {
+ProductRoutes.get('/delete/:id',verify,(req, res)=> {
     Products.findByIdAndRemove({_id: req.params.id}, function(err, products){
         if(err) res.json(err);
         else res.json({ removedId: req.params.id }) 
