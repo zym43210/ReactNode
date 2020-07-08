@@ -28,8 +28,8 @@ app.use(bodyParserURLEncoded);
 
 
 // use express router
-app.use('/api/products',productsRoutes);
 app.use('/api/users',usersRoutes);
+app.use('/api/products',productsRoutes);
 //call heros routing
 
 

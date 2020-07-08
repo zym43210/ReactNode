@@ -14,10 +14,6 @@ var productSchema = new Schema({
 }, {
     timestamps: true
 
-},
-{
-    collection: "Products"
-  }
-);
+});
 
 module.exports = mongoose.model("Products",productSchema);
