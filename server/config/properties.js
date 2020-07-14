@@ -1,6 +1,6 @@
 module.exports = {
     PORT : 4000,
-    DB : 'mongodb://localhost:27017/Products',
+    DB : 'mongodb+srv://root:8841@mycluster.nlydx.gcp.mongodb.net/ReactNode?retryWrites=true&w=majority',
     TOKEN_KEY:'lolkekmem'
 }
 
